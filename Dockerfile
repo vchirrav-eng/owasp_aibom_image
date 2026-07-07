@@ -10,7 +10,6 @@ ENV PYTHONPATH=/app
 COPY README.md /app/README.md
 COPY pyproject.toml /app/pyproject.toml
 COPY LICENSE /app/LICENSE
-COPY PROJECT_README.md /app/PROJECT_README.md
 COPY src /app/src
 COPY entrypoint.sh /app/entrypoint.sh
 
