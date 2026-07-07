@@ -47,11 +47,22 @@ Any arguments passed to the container are forwarded to the AIBOM CLI instead of 
 Linux/macOS:
 
 ```bash
-docker run --rm -v "$(pwd)/out:/data" vchirrav/owasp-aibom-generator \
-  meta-llama/Llama-2-7b-chat-hf -o /data/aibom.json
+docker run --rm -v "$(pwd)/out:/data" vchirrav/owasp-aibom-generator meta-llama/Llama-2-7b-chat-hf -o /data/aibom.json
 ```
 
-Windows (cmd): use `-v "%cd%\out:/data"` — PowerShell: `-v "${PWD}\out:/data"`. The AIBOM is written to `.\out\aibom.json` on the host.
+Windows (cmd):
+
+```cmd
+docker run --rm -v "%cd%\out:/data" vchirrav/owasp-aibom-generator meta-llama/Llama-2-7b-chat-hf -o /data/aibom.json
+```
+
+Windows (PowerShell):
+
+```powershell
+docker run --rm -v "${PWD}\out:/data" vchirrav/owasp-aibom-generator meta-llama/Llama-2-7b-chat-hf -o /data/aibom.json
+```
+
+The AIBOM is written to `out/aibom.json` on the host.
 
 **Command line options:**
 
@@ -80,10 +91,7 @@ Windows (cmd): use `-v "%cd%\out:/data"` — PowerShell: `-v "${PWD}\out:/data"`
 Example with a token and persistent storage:
 
 ```bash
-docker run -d -p 7860:7860 \
-  -e HF_TOKEN=hf_xxx \
-  -v aibom-data:/data \
-  vchirrav/owasp-aibom-generator
+docker run -d -p 7860:7860 -e HF_TOKEN=hf_xxx -v aibom-data:/data vchirrav/owasp-aibom-generator
 ```
 
 If a writable `/data` volume is mounted, model caches and generated output persist there; otherwise the container falls back to `/tmp` (ephemeral).
@@ -110,6 +118,4 @@ src/               # application code (FastAPI web app + CLI)
 
 ## Bugs and contributions
 
-Upstream issues: https://github.com/GenAI-Security-Project/aibom-generator/issues
-
-Code mirrored from the [Hugging Face Space](https://huggingface.co/spaces/GenAISecurityProject/OWASP-AIBOM-Generator) (Apache-2.0). This repo only adds packaging/distribution as a public Docker image.
+Upstream issues: https://github.com/GenAI-Security-Project/aibom-generator/iss
