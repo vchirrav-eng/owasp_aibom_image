@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIBOM Generator - Error</title>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        {% include 'includes/header.html' %}
+
+        <!-- Error message -->
+        <div class="error-message">
+            <h2>❌&nbsp;&nbsp;Error Generating AIBOM</h2>
+        </div>
+
+        <!-- Try Again Button -->
+        <div style="text-align: left; margin-bottom: 20px;">
+            <a href="/" class="button">🔄 Try Again</a>
+        </div>
+
+        <!-- Error Details -->
+        <div class="error-section">
+            <h2>What Happened?</h2>
+            <div class="error-details">
+                <p>{{ error }}</p>
+            </div>
+        </div>
+
+        <!-- Common Solutions -->
+        <div class="content-section">
+            <h2>💡&nbsp;&nbsp;Common Solutions</h2>
+            <p><strong>Model not found:</strong> Check that the model ID follows <code>owner/model-name</code> format
+                and exists on Hugging Face.</p>
+            <p><strong>Access issues:</strong> Some models require an access token or may be private.</p>
+            <p><strong>Temporary issues:</strong> Try again if there were connectivity or Hugging Face API hiccups.</p>
+        </div>
+
+        <!-- Modern Footer -->
+        {% include 'includes/footer.html' %}
+
+    </div>
+</body>
+
+</html>

@@ -1,2 +1,3 @@
-# owasp_aibom_image
-A repo to provide Docker image based on code hosted at Huggingface
+# OWASP AIBOM Generator — Docker Image
+
+Docker packaging of the [OWASP GenAI Security P

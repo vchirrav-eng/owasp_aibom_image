@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIBOM Generator</title>
+    <link rel="stylesheet" href="/static/css/style.css?v=2.0">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        {% set hide_generate_another = true %}
+        {% include 'includes/header.html' %}
+    </div>
+
+    <div class="container">
+        <!-- Form Section (Moved to top) -->
+        <div class="form-section">
+            <h2>Generate AIBOM</h2>
+            <p>
+                Enter a model on Hugging Face, in a format
+                <code>&lt;organization-or-username&gt;/&lt;model-name&gt;</code> (easy copy button), or model's URL, to
+                generate AIBOM in CycloneDX format. You can browse available models in the <a
+                    href="https://huggingface.co/models" target="_blank" rel="noopener noreferrer">Hugging Face models
+                    repository</a>.
+            </p>
+            <form id="sbom-form" action="/generate" method="post"
+                style="display: flex; flex-direction: row; align-items: center; width: 100%;">
+                <input type="text" name="model_id" id="model-input" placeholder="e.g., openai/whisper-tiny" required
+                    style="flex: 1; max-width: 70%; margin-right: 10px;">
+                <button type="submit" id="generate-button" disabled
+                    onclick="this.disabled=true; this.innerText='Generating...'; document.getElementById('sbom-form').submit();">Generate
+                    AIBOM</button>
+            </form>
+
+        </div>
+
+        <!-- Tool Description Section -->
+        <div class="content-section">
+            <h2>About This Tool</h2>
+            <p>This open-source tool generates AIBOM (AI Bill of Materials) for models hosted on Hugging Face. It
+                automatically extracts and formats key information about AI models into a standardized, machine-readable
+                SBOM (Software Bill of Materials) using the CycloneDX JSON format. Because metadata quality varies
+                across models and much of the information is unstructured, the tool analyzes what is available,
+                organizes it into a consistent structure, and provides an AIBOM completeness score that evaluates how
+                well the model is documented. This helps users quickly understand documentation gaps and supports
+                transparency, security, and compliance. The tool is also listed on <a
+                    href="https://cyclonedx.org/tool-center/" target="_blank" rel="noopener noreferrer">CycloneDX Tool
+                    Center</a>.</p>
+        </div>
+
+        <!-- Introduction Section -->
+        <div class="content-section">
+            <h2>Understanding AIBOMs</h2>
+            <p>An AIBOM (Artificial Intelligence Bill of Materials, also known as AI/ML-BOM, AI SBOM, or SBOM for AI) is
+                a detailed, structured inventory that lists the components and dependencies involved in building and
+                operating an AI system—such as pre-trained models, datasets, libraries, and configuration parameters.
+                Much like a traditional SBOM for software, an AIBOM brings transparency to what goes into an AI system,
+                enabling organizations to assess security, compliance, and ethical risks. It is essential for managing
+                AI supply chain risks, supporting regulatory requirements, ensuring model provenance, and enabling
+                incident response and audits. As AI systems grow more complex and widely adopted, AIBOMs become critical
+                for maintaining trust, accountability, and control over how AI technologies are developed, integrated,
+                and deployed.</p>
+        </div>
+
+        <!-- Modern Footer -->
+        {% include 'includes/footer.html' %}
+    </div>
+
+    <!-- JavaScript for loading indicator and Captcha -->
+    <script src="/static/js/script.js"></script>
+</body>
+
+</html>
