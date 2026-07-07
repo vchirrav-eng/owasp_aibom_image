@@ -44,11 +44,14 @@ docker run -d --name aibom -p 7860:7860 vchirrav/owasp-aibom-generator
 
 Any arguments passed to the container are forwarded to the AIBOM CLI instead of starting the web server:
 
+Linux/macOS:
+
 ```bash
-# Generate an AIBOM for a model, saved to ./out on the host
 docker run --rm -v "$(pwd)/out:/data" vchirrav/owasp-aibom-generator \
   meta-llama/Llama-2-7b-chat-hf -o /data/aibom.json
 ```
+
+Windows (cmd): use `-v "%cd%\out:/data"` — PowerShell: `-v "${PWD}\out:/data"`. The AIBOM is written to `.\out\aibom.json` on the host.
 
 **Command line options:**
 
